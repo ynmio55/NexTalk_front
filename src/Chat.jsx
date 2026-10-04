@@ -13,6 +13,7 @@ export default function Chat({ user, onLogout }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [socketState, setSocketState] = useState("connecting");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const socketRef = useRef(null);
   const reconnectRef = useRef(null);
@@ -132,12 +133,14 @@ export default function Chat({ user, onLogout }) {
   const voiceUsers = online.filter((p) => p.voice_room === voice.channel?.id);
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${mobileNavOpen ? "mobile-nav-open" : ""}`}>
+      <button className="mobile-backdrop" aria-label="Close navigation" onClick={() => setMobileNavOpen(false)} />
       <aside className="server-rail">
         <button className="server active">N</button>
       </aside>
 
       <aside className="sidebar">
+        <button className="mobile-close" aria-label="Close navigation" onClick={() => setMobileNavOpen(false)}>×</button>
         <div className="workspace-head">
           <div>
             <strong>{workspace.server?.name || "NexTalk"}</strong>
@@ -152,7 +155,7 @@ export default function Chat({ user, onLogout }) {
             <button
               key={channel.id}
               className={`channel ${activeChannel?.id === channel.id ? "selected" : ""}`}
-              onClick={() => setActiveChannel(channel)}
+              onClick={() => { setActiveChannel(channel); setMobileNavOpen(false); }}
             >
               <span>#</span>
               {channel.name}
@@ -168,7 +171,7 @@ export default function Chat({ user, onLogout }) {
               <button
                 key={channel.id}
                 className={`channel ${voice.channel?.id === channel.id ? "selected" : ""}`}
-                onClick={() => voice.join(channel)}
+                onClick={() => { voice.join(channel); setMobileNavOpen(false); }}
               >
                 <span>◖</span>
                 {channel.name}
@@ -214,11 +217,12 @@ export default function Chat({ user, onLogout }) {
       <main className="chat">
         <header className="chat-head">
           <div>
+            <button className="mobile-menu" aria-label="Open navigation" onClick={() => setMobileNavOpen(true)}>☰</button>
             <span className="hash">#</span>
             <strong>{activeChannel?.name || "general"}</strong>
           </div>
           <div className="head-actions">
-            <span>{onlineIds.size} online</span>
+            <span className="online-dot" aria-hidden="true"></span><span>{onlineIds.size} online</span>
           </div>
         </header>
 
