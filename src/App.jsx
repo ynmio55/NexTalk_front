@@ -8,6 +8,7 @@ function Auth({ onDone }) {
     username: "",
     display_name: "",
     password: "",
+    invite_code: "",
   });
   const [error, setError] = useState("");
 
@@ -53,6 +54,7 @@ function Auth({ onDone }) {
         </label>
 
         {mode === "register" && (
+          <>
           <label>
             Display name
             <input
@@ -61,6 +63,16 @@ function Auth({ onDone }) {
               placeholder="Mio"
             />
           </label>
+          <label>
+            Invite code
+            <input
+              value={form.invite_code}
+              onChange={(e) => setForm({ ...form, invite_code: e.target.value })}
+              placeholder="Private invite code"
+              autoComplete="off"
+            />
+          </label>
+          </>
         )}
 
         <label>
