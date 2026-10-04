@@ -153,3 +153,62 @@ input:focus { border-color: #7861ff; box-shadow: 0 0 0 3px rgba(120,97,255,.14);
   .message-list { padding-inline: 14px; }
   .composer { margin-inline: 10px; }
 }
+
+.connection-pill {
+  color: #9ca3af;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.connection-pill.online { color: #57d7a8; }
+.connection-pill.offline { color: #ed7184; }
+.channel small {
+  margin-left: auto;
+  color: #6f7783;
+  font-size: 10px;
+}
+.voice-panel {
+  margin: 14px 10px 0;
+  padding: 12px;
+  border: 1px solid #2d3440;
+  border-radius: 12px;
+  background: #12161b;
+}
+.voice-copy { display: grid; gap: 3px; }
+.voice-copy strong { color: #62d8b4; font-size: 13px; }
+.voice-copy span { color: #7d8591; font-size: 11px; }
+.voice-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+.voice-actions button {
+  border: 1px solid #303743;
+  border-radius: 8px;
+  background: #20252d;
+  padding: 7px 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.voice-actions button.active {
+  background: #4b2630;
+  border-color: #70404b;
+  color: #ffb0bd;
+}
+.voice-error {
+  margin: 10px;
+  font-size: 11px;
+}
+.composer button[type="submit"] {
+  min-width: 58px;
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: #745cff;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.member.offline { opacity: .5; }
+.member.offline span { color: #777f8a; }
+.head-actions span { color: #858d98; font-size: 12px; }
